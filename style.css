@@ -50,16 +50,32 @@ nav {
 
 .logo {
     display: flex;
-    width: 200px;
+    width: max-content;
     height: 75px;
+    gap: 0.5rem;
     margin: auto 0;
-    
+    animation: LogoToCorner linear;
+    animation-timeline: scroll(root);
+    animation-range: 0px 300px;
+}
+
+@keyframes LogoToCorner {
+    0% {
+        transform: translate(calc(50vw - 100px - 100%), calc(50vh - 37.5px)) scale(3);
+        z-index: 10;
+    }
+    65% {
+        transform: translate(0, 0) scale(1);
+    }
 }
 
 .logo a {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    place-items: center;
+    width: 100%;
+    height: 100%;
 }
 .logo a:hover {
     color: white;
@@ -79,7 +95,15 @@ nav {
     width: auto;
     height: auto;
     margin: auto;
+    flex-shrink: 0;
 }
+
+.logo .text {
+    flex-shrink: 0;
+}
+
+
+
 
 a {
     color: white;
@@ -102,16 +126,19 @@ a:hover {
 
 #profile .section-container{
     grid-area: 1 / 1;
+    max-height: 100vh;
+    background-image: linear-gradient(to top, rgba(255,255,255,0), rgba(0,0,0,0.5));
 }
 
 .section-container img {
     display: block;
-    object-fit: contain;
+    object-fit: cover;
     max-width: 100%;
-    max-height: 100vh;
     width: auto;
     height: auto;
     margin: auto;
+    z-index: -1;
+    
 }
 
 
@@ -164,7 +191,8 @@ section {
 }
 
 .horizontal {
-    grid-column: span 2;
+    grid-column: span 3;
+    grid-row: span 2;
 }
 
 .vertical {
@@ -172,7 +200,17 @@ section {
 }
 
 .big {
+    grid-column: span 3;
+    grid-row: span 3;
+}
+
+#about .big {
     grid-column: span 2;
+    grid-row: span 2;
+}
+
+.horizontal-big {
+    grid-column: span 3;
     grid-row: span 2;
 }
 
@@ -203,5 +241,91 @@ section {
     background-color: #EDEDED;
 }
 
+/* ROOMS */
 
+#rooms {
+    background-color: #EDEDED;
+    display: grid;
+    animation: scrollMulticolor linear;
+    animation-timeline: view();
+    animation-fill-mode: backwards;
+    animation-range: contain 0% exit 100%;
+}
 
+@keyframes scrollMulticolor {
+    0%   { background-color: #015765; }
+    40%   { background-color: #CABCAD; }
+    100%   { background-color: #887E7C; }
+}
+#bedroom1 {
+    grid-area: 1 / 1;
+}
+
+#rooms .section-container-text {
+    grid-area: 1 / 1;
+    position: sticky;
+    top: 1px;
+    z-index: 11;
+    height: fit-content;
+}
+
+#rooms nav {
+    height: fit-content;
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+#rooms ul {
+    width: 100%;
+}
+
+#rooms a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 2;
+
+}
+
+#rooms span {
+    display: block;
+    background-color: #EDEDED;
+    padding: 0.1rem;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+#bedroom1 .section-container-gallery {
+    padding-bottom: 0rem;
+}
+
+#masterbedroom .section-container-gallery {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#bedroom2 .section-container-gallery {
+    padding-top: 0rem;
+}
+
+#rooms .section-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#rooms .section-container-gallery{
+    max-width: 50%;
+}
+
+/* EXPERIENCES */
+
+#experiences {
+    min-height: 100vh;
+    background-color: #EDEDED;
+}
+
+#experiences .section-container-gallery {
+    align-self: center;
+}
